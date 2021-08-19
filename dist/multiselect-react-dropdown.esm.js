@@ -755,8 +755,6 @@ var Multiselect = /*#__PURE__*/function (_React$Component) {
       if (this.state.toggleOptionsList) {
         // @ts-ignore
         clearTimeout(this.optionTimeout);
-      } else {
-        this.toggelOptionList();
       }
     }
   }, {
@@ -788,6 +786,8 @@ var Multiselect = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderMultiselectContainer",
     value: function renderMultiselectContainer() {
+      var _this10 = this;
+
       var _this$state6 = this.state,
           inputValue = _this$state6.inputValue,
           toggleOptionsList = _this$state6.toggleOptionsList,
@@ -808,7 +808,9 @@ var Multiselect = /*#__PURE__*/function (_React$Component) {
         className: "search-wrapper searchWrapper ".concat(singleSelect ? 'singleSelect' : ''),
         ref: this.searchWrapper,
         style: style['searchBox'],
-        onClick: this.toggelOptionList
+        onClick: function onClick() {
+          _this10.toggelOptionList();
+        }
       }, this.renderSelectedList(), React__default.createElement("input", {
         type: "text",
         ref: this.searchBox,
@@ -816,8 +818,6 @@ var Multiselect = /*#__PURE__*/function (_React$Component) {
         id: "".concat(id || 'search', "_input"),
         onChange: this.onChange,
         value: inputValue,
-        onFocus: this.onFocus,
-        onBlur: this.onBlur,
         placeholder: singleSelect && selectedValues.length || hidePlaceholder && selectedValues.length ? '' : placeholder,
         onKeyDown: this.onArrowKeyNavigation,
         style: style['inputField'],

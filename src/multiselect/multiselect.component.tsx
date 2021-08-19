@@ -479,8 +479,6 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
     if (this.state.toggleOptionsList) {
       // @ts-ignore
       clearTimeout(this.optionTimeout);
-    } else {
-      this.toggelOptionList();
     }
   }
 
@@ -508,25 +506,26 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
     const { placeholder, style, singleSelect, id, hidePlaceholder, disable, showArrow} = this.props;
     return (
       <div className={`multiselect-container multiSelectContainer ${disable ? `disable_ms` : ''}`} id={id || 'multiselectContainerReact'} style={style['multiselectContainer']}>
-        <div className={`search-wrapper searchWrapper ${singleSelect ? 'singleSelect' : ''}`} 
-          ref={this.searchWrapper} style={style['searchBox']} 
-          onClick={this.toggelOptionList}
+        <div className={`search-wrapper searchWrapper ${singleSelect ? 'singleSelect' : ''}`}
+             ref={this.searchWrapper} style={style['searchBox']}
+
+             onClick={() => {
+               this.toggelOptionList()
+             }}
         >
           {this.renderSelectedList()}
           <input
-						type="text"
-						ref={this.searchBox}
-            className="searchBox"
-            id={`${id || 'search'}_input`}
-            onChange={this.onChange}
-            value={inputValue}
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-            placeholder={((singleSelect && selectedValues.length) || (hidePlaceholder && selectedValues.length)) ? '' : placeholder}
-            onKeyDown={this.onArrowKeyNavigation}
-            style={style['inputField']}
-            autoComplete="off"
-            disabled={singleSelect || disable}
+              type="text"
+              ref={this.searchBox}
+              className="searchBox"
+              id={`${id || 'search'}_input`}
+              onChange={this.onChange}
+              value={inputValue}
+              placeholder={((singleSelect && selectedValues.length) || (hidePlaceholder && selectedValues.length)) ? '' : placeholder}
+              onKeyDown={this.onArrowKeyNavigation}
+              style={style['inputField']}
+              autoComplete="off"
+              disabled={singleSelect || disable}
           />
           {(singleSelect || showArrow) && <img
             src={DownArrow}

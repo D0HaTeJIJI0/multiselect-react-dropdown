@@ -26,11 +26,18 @@ export default {
   decorators: [withKnobs]
 } as Meta;
 
-const Template: Story<IMultiselectProps> = (args) => <MultiSelect {...args} />;
+const Template: Story<IMultiselectProps> = (args) =>
+    <>
+      <div style={{marginBottom: '1rem'}}>
+        <MultiSelect {...args} />
+      </div>
+      <MultiSelect {...args} />
+    </>
 
 export const FlatArray = Template.bind({});
 FlatArray.args = {
   options: flatArray,
+  showArrow: true,
   isObject: false
 };
 
