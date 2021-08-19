@@ -676,7 +676,10 @@ var Multiselect = /*#__PURE__*/function (_React$Component) {
         return React__default.createElement("span", {
           className: "chip  ".concat(singleSelect && 'singleChip', " ").concat(_this8.isDisablePreSelectedValues(value) && 'disableSelection'),
           key: index,
-          style: style['chips']
+          style: style['chips'],
+          onClick: function onClick(e) {
+            return e.stopPropagation();
+          }
         }, !isObject ? (value || '').toString() : value[displayValue], !_this8.isDisablePreSelectedValues(value) && (!customCloseIcon ? React__default.createElement("img", {
           className: "icon_cancel closeIcon",
           src: closeIconType,

@@ -418,7 +418,10 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
     const { isObject = false, displayValue, style, singleSelect, customCloseIcon } = this.props;
     const { selectedValues, closeIconType } = this.state;
     return selectedValues.map((value, index) => (
-      <span className={`chip  ${singleSelect && 'singleChip'} ${this.isDisablePreSelectedValues(value) && 'disableSelection'}`} key={index} style={style['chips']}>
+      <span className={`chip  ${singleSelect && 'singleChip'} ${this.isDisablePreSelectedValues(value) && 'disableSelection'}`}
+            key={index}
+            style={style['chips']}
+            onClick={e => e.stopPropagation()}>
         {!isObject ? (value || '').toString() : value[displayValue]}
         {!this.isDisablePreSelectedValues(value) && (!customCloseIcon ? <img
           className="icon_cancel closeIcon"
